@@ -1,3 +1,5 @@
 function onBallClick(){
-    console.log("Ball is clicked!")
+    var elBall = document.querySelector(".ball");
+elBall.style.width="150px";
+elBall.style.height="150px";
 }
