@@ -1,5 +1,11 @@
-function onBallClick(){
+function onBallClick() {
     var elBall = document.querySelector(".ball");
-elBall.style.width="150px";
-elBall.style.height="150px";
+    var currentWidth = parseInt(getComputedStyle(elBall).width);
+    elBall.style.width = (currentWidth + 50) + "px";
+    if (currentWidth + 50 > 400)
+        elBall.style.width = 100 + "px"
+    var currentHeight = parseInt(getComputedStyle(elBall).height);
+    elBall.style.height = (currentHeight + 50) + "px";
+    if (currentHeight + 50 > 400)
+        elBall.style.height = 100 + "px"
 }
