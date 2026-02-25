@@ -9,4 +9,5 @@ function onBallClick() {
     elBall.style.height = (currentHeight + randomNumber) + "px";
     if (currentHeight + 50 > 400)
         elBall.style.height = 100 + "px"
+    elBall.style.backgroundColor=getRandomColor();
 }
