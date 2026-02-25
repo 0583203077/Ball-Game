@@ -13,8 +13,8 @@ h1 {
 .ball {
     width: 100px;
     height: 100px;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 300px;
+    max-height: 300px;
     border-radius: 50%;
 
     transition: width 1s, height 1s;
@@ -27,8 +27,8 @@ h1 {
 .ball1 {
     width: 100px;
     height: 100px;
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 500px;
+    max-height: 500px;
     border-radius: 50%;
 
     transition: width 1s, height 1s;
