@@ -13,27 +13,45 @@ h1 {
 .ball {
     width: 100px;
     height: 100px;
-    max-width: 300px;
-    max-height: 300px;
+
     border-radius: 50%;
 
-    transition: width 1s, height 1s;
-
     margin: auto;
+
+    transition: width 1s, height 1s;
+}
+
+.ball1 {
+    max-width: 300px;
+    max-height: 300px;
+    min-width: 100px;
+    min-height: 100px;
 
     background-color: deeppink;
 }
 
-.ball1 {
-    width: 100px;
-    height: 100px;
+.ball2 {
     max-width: 500px;
     max-height: 500px;
-    border-radius: 50%;
-
-    transition: width 1s, height 1s;
-
-    margin: auto;
+    min-width: 100px;
+    min-height: 100px;
 
     background-color: aqua;
+}
+
+.ball3 {
+    background-color: crimson;
+}
+
+.ball4 {
+    background-color: cornflowerblue;
+}
+
+.ball5 {
+    background-color: green;
+}
+
+
+.ball6 {
+    background-color: gold;
 }
