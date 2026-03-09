@@ -3,16 +3,40 @@ var balls;
 var undoStates = [];
 var redoStates = [];
 let moveCount = 0
+let seconds = 0
+let timerId = null
 
 init();
 
 function onBallClick(elBall, maxDiameter) {
+    undoStates.push(saveState())
+    changeBall(elBall, maxDiameter)
+    updateCounter()
+}
+
+function updateCounter() {
+    if (moveCount === 0) {
+        startTimer()
+    }
     moveCount++
     document.title = `Ball Game (${moveCount})`
-    undoStates.push(saveState())
-    changeBall(elBall,maxDiameter)
 }
- 
+
+function startTimer() {
+    if (timerId !== null) return
+
+    timerId = setInterval(function () {
+        seconds++
+        console.log(seconds)
+        const timerLabel = document.querySelector(".timer");
+        timerLabel.textContent = seconds
+    }, 1000)
+}
+
+function stopTimer() {
+    clearInterval(timerId)
+    timerId = null
+}
 
 function changeBall(elBall, maxDiameter) {
     var currentWidth = parseInt(getComputedStyle(elBall).width);
@@ -33,8 +57,7 @@ function changeBall(elBall, maxDiameter) {
 }
 
 function onBall3Click() {
-    moveCount++
-    document.title = `Ball Game (${moveCount})`
+    updateCounter()
     undoStates.push(saveState())
     var elBall1 = document.querySelector(".ball1");
     var elBall2 = document.querySelector(".ball2");
@@ -43,8 +66,7 @@ function onBall3Click() {
 }
 
 function onBall4Click() {
-    moveCount++
-    document.title = `Ball Game (${moveCount})`
+    updateCounter()
     undoStates.push(saveState())
     var elBall1 = document.querySelector(".ball1");
     var elBall2 = document.querySelector(".ball2");
@@ -53,8 +75,7 @@ function onBall4Click() {
 }
 
 function onBall5Click() {
-    moveCount++
-    document.title = `Ball Game (${moveCount})`
+    updateCounter()
     var body = document.querySelector("body");
     body.style.backgroundColor = getRandomColor();
     undoStates.push(saveState())
@@ -65,8 +86,12 @@ function onBall5Click() {
 function onBall6Click() {
     // undoStates.push(saveState())
     // moveCount++
-    document.title = `Ball Game (${moveCount})`
+    // document.title = `Ball Game (${moveCount})`
+
     location.reload();
+    stopTimer()
+const timerLabel = document.querySelector(".timer");
+        timerLabel.textContent = seconds
 }
 let intervalId;
 function init() {
@@ -104,8 +129,7 @@ function startClickHandlers() {
             console.log("האינטרוול נעצר", intervalCounter);
         }
         console.log("רץ כל 2 שניות", intervalCounter);
-        moveCount++
-        document.title = `Ball Game (${moveCount})`
+        updateCounter()
         undoStates.push(saveState())
         onBall3Click()
         onBall4Click()
