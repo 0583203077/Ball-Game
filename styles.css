@@ -10,6 +10,20 @@ h1 {
     color: white;
 }
 
+.top-buttons {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+
+    display: flex;
+    gap: 5px;
+}
+
+/* .top-buttons button {
+    display: block;
+    margin-bottom: 5px;
+} */
+
 .ball {
     width: 100px;
     height: 100px;
