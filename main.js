@@ -1,25 +1,21 @@
-init();
+
 var balls;
 var undoStates = [];
 var redoStates = [];
 let moveCount = 0
 
-function onBallClick(elBall, maxDiameter, index) {
+init();
+
+function onBallClick(elBall, maxDiameter) {
+    moveCount++
+    document.title = `Ball Game (${moveCount})`
     undoStates.push(saveState())
-    changeBall(elBall,maxDiameter,index)
+    changeBall(elBall,maxDiameter)
 }
  
 
-function changeBall(elBall, maxDiameter, index) {
-
+function changeBall(elBall, maxDiameter) {
     var currentWidth = parseInt(getComputedStyle(elBall).width);
-    // var currentBackground = getComputedStyle(elBall).backgroundColor
-    // balls[index].backgroundColor = currentBackground
-    // balls[index].radius = currentWidth
-    // undoStates.push({
-    //     balls: balls.map(b => ({ ...b })),
-    //     backgroundColor: getComputedStyle(document.querySelector("body")).backgroundColor
-    // })
     console.log(undoStates)
     const undoBtn = document.querySelector(".undo-btn");
     undoBtn.disabled = false
@@ -34,29 +30,31 @@ function changeBall(elBall, maxDiameter, index) {
     elBall.style.height = radius + "px";
     var background = getRandomColor();
     elBall.style.backgroundColor = background
-
-    // balls[index].backgroundColor = background
-    // balls[index].radius = radius
-    // moveCount++
 }
 
 function onBall3Click() {
+    moveCount++
+    document.title = `Ball Game (${moveCount})`
     undoStates.push(saveState())
     var elBall1 = document.querySelector(".ball1");
     var elBall2 = document.querySelector(".ball2");
-    changeBall(elBall1, 300, 0)
-    changeBall(elBall2, 500, 1)
+    changeBall(elBall1, 300)
+    changeBall(elBall2, 500)
 }
 
 function onBall4Click() {
+    moveCount++
+    document.title = `Ball Game (${moveCount})`
     undoStates.push(saveState())
     var elBall1 = document.querySelector(".ball1");
     var elBall2 = document.querySelector(".ball2");
-    changeBall(elBall1, 0, 0)
-    changeBall(elBall2, 0, 1)
+    changeBall(elBall1, 0)
+    changeBall(elBall2, 0)
 }
 
 function onBall5Click() {
+    moveCount++
+    document.title = `Ball Game (${moveCount})`
     var body = document.querySelector("body");
     body.style.backgroundColor = getRandomColor();
     undoStates.push(saveState())
@@ -65,19 +63,18 @@ function onBall5Click() {
 }
 
 function onBall6Click() {
+    // undoStates.push(saveState())
+    // moveCount++
+    document.title = `Ball Game (${moveCount})`
     location.reload();
 }
 let intervalId;
 function init() {
+    document.title = `Ball Game (${moveCount})`
     const undoBtn = document.querySelector(".undo-btn");
     undoBtn.disabled = true
     const redoBtn = document.querySelector(".redo-btn");
     redoBtn.disabled = true
-    // var elBall1 = document.querySelector(".ball1");
-    // var elBall2 = document.querySelector(".ball2");
-    // balls = [{ radius: parseInt(getComputedStyle(elBall1).width), backgroundColor: getComputedStyle(elBall1).backgroundColor },
-    // { radius: parseInt(getComputedStyle(elBall2).width), backgroundColor: getComputedStyle(elBall2).backgroundColor }
-    // ]
     const ball6 = document.querySelector(".ball6");
     let hoverTimer = null;
 
@@ -107,6 +104,8 @@ function startClickHandlers() {
             console.log("האינטרוול נעצר", intervalCounter);
         }
         console.log("רץ כל 2 שניות", intervalCounter);
+        moveCount++
+        document.title = `Ball Game (${moveCount})`
         undoStates.push(saveState())
         onBall3Click()
         onBall4Click()
@@ -131,12 +130,8 @@ function undo(elUndo) {
     var lastState = undoStates.pop();
     var body = document.querySelector("body");
 
-    // redoStates.push(lastState)
     console.log(balls)
-    // redoStates.push({
-    //     balls: balls.map(b => ({ ...b })),
-    //     backgroundColor: getComputedStyle(body).backgroundColor
-    // })
+
     if (undoStates.length === 0) {
         elUndo.disabled = true
     }
@@ -146,13 +141,6 @@ function undo(elUndo) {
     var elBall2 = document.querySelector(".ball2");
     var body = document.querySelector("body");
 
-    // balls = [{ radius: parseInt(getComputedStyle(elBall1).width), backgroundColor: getComputedStyle(elBall1).backgroundColor },
-    // { radius: parseInt(getComputedStyle(elBall2).width), backgroundColor: getComputedStyle(elBall2).backgroundColor }
-    // ]
-    // redoStates.push({
-    //     balls: balls.map(b => ({ ...b })),
-    //     backgroundColor: getComputedStyle(body).backgroundColor
-    // })
     redoStates.push(saveState())
     console.log("currentWidth " + getComputedStyle(elBall1).width)
     console.log("lastState " + lastState.balls[0].radius)
@@ -175,13 +163,7 @@ function redo(elRedo) {
         var elBall1 = document.querySelector(".ball1");
         var elBall2 = document.querySelector(".ball2");
         var body = document.querySelector("body");
-        // balls = [{ radius: parseInt(getComputedStyle(elBall1).width), backgroundColor: getComputedStyle(elBall1).backgroundColor },
-        // { radius: parseInt(getComputedStyle(elBall2).width), backgroundColor: getComputedStyle(elBall2).backgroundColor }
-        // ]
-        // undoStates.push({
-        //     balls: balls.map(b => ({ ...b })),
-        //     backgroundColor: getComputedStyle(body).backgroundColor
-        // })
+
         undoStates.push(saveState())
         const undoBtn = document.querySelector(".undo-btn");
         undoBtn.disabled = (undoStates.length === 0)
