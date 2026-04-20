@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: black;
 }
@@ -24,18 +28,12 @@ label {
     gap: 5px;
 }
 
-/* .top-buttons button {
-    display: block;
-    margin-bottom: 5px;
-} */
-
 .ball {
     width: 100px;
     height: 100px;
+    margin: auto;
 
     border-radius: 50%;
-
-    margin: auto;
 
     transition: width 1s, height 1s;
 }
